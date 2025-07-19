@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "GXex5UTHuhg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\driver-hos-state-api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\supputholl\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512"
+  ],
+  "logs": []
+}
