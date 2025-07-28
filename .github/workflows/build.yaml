@@ -3,49 +3,49 @@ name: DX Build and Deploy
 on:
   push:
     branches:
-      - main
+      - main  # Trigger build when pushing to the 'main' branch
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu image for the build
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Checkout the code from the repository
 
       # Set up .NET environment
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '8.0.x'  # Ensure the correct version
+          dotnet-version: '8.0.x'  # Ensure the correct version of .NET is used
 
       # Install dependencies
       - name: Install Dependencies
-        run: dotnet restore
+        run: dotnet restore  # Restore NuGet packages
 
       # Check the project SDK version
       - name: Check .NET SDK Version
-        run: dotnet --version
+        run: dotnet --version  # Output the current .NET version being used
 
       # Build the project
       - name: Build the project
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release  # Build the project in Release mode
 
       # Run tests (optional)
       - name: Run tests
-        run: dotnet test --configuration Release
+        run: dotnet test --configuration Release  # Run unit tests in Release mode
 
       # Publish the project
       - name: Publish the project
-        run: dotnet publish --configuration Release --output ./out
+        run: dotnet publish --configuration Release --output ./out  # Publish to the './out' folder
 
       # Deploy to Octopus (replace with your Octopus Deploy action)
       - name: Deploy to Octopus
         uses: octopusdeploy/octopus-action@v3
         with:
-          octopus_url: ${{ secrets.OCTOPUS_URL }} # Octopus server URL
-          octopus_api_key: ${{ secrets.OCTOPUS_API_KEY }} # Your Octopus API key
-          project_name: 'driver-hos-state-api' # Replace with your actual project name
-          environment_name: 'QA' # Or whatever environment you're deploying to
-          release_version: '1.0.0' # Replace with your release version logic, or a tag
-          deploy: true
+          octopus_url: ${{ secrets.OCTOPUS_URL }}  # Octopus server URL from GitHub secrets
+          octopus_api_key: ${{ secrets.OCTOPUS_API_KEY }}  # Octopus API key from GitHub secrets
+          project_name: 'driver-hos-state-api'  # Project name in Octopus
+          environment_name: 'QA'  # Specify the environment (e.g., QA, PROD)
+          release_version: '1.0.0'  # Replace with your release version logic or use a tag
+          deploy: true  # Flag to trigger deployment
