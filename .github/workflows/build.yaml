@@ -17,17 +17,21 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.0.x'  # Ensure the correct version
 
       # Install dependencies
-      - name: Restore dependencies
+      - name: Install Dependencies
         run: dotnet restore
+
+      # Check the project SDK version
+      - name: Check .NET SDK Version
+        run: dotnet --version
 
       # Build the project
       - name: Build the project
         run: dotnet build --configuration Release
 
-      # Run tests (optional, if you have test cases)
+      # Run tests (optional)
       - name: Run tests
         run: dotnet test --configuration Release
 
