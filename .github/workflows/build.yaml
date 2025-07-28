@@ -17,11 +17,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Step 2: Set up .NET SDK
-    - name: Set up .NET
-      uses: actions/setup-dotnet@v1
+    # Step 2: Set up .NET 8 SDK
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '7.0' # Set the version of .NET you are using, e.g., '6.0', '7.0'
+        dotnet-version: '8.0.x'  # Use .NET 8 SDK
 
     # Step 3: Restore dependencies
     - name: Restore dependencies
@@ -35,7 +35,7 @@ jobs:
     - name: Run tests
       run: dotnet test --configuration Release
 
-    # Step 6: Publish the application (optional for deployment)
+    # Step 6: Publish the application
     - name: Publish the application
       run: dotnet publish --configuration Release --output ./publish
 
