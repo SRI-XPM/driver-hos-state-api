@@ -1,26 +1,47 @@
-name: DX Build
+name: DX Build and Deploy
 
 on:
   push:
     branches:
-      - "**"
+      - main
 
 jobs:
-  dx-workfow:
-    name: DX Workflow
-    runs-on: [ubuntu-latest]
-
-    permissions:
-      id-token: write
-      contents: write
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Dotnet Things
-        uses: variant-inc/actions-dotnet@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up .NET environment
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '8.0.x'
-          ecr_repository: 'usxpress/ops-maintenance-api'
 
-        # This step sets up the project in Octopus Deploy
-      - name: Octopus Action
-        uses: variant-inc/actions-octopus@v3
+      # Install dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Build the project
+      - name: Build the project
+        run: dotnet build --configuration Release
+
+      # Run tests (optional, if you have test cases)
+      - name: Run tests
+        run: dotnet test --configuration Release
+
+      # Publish the project
+      - name: Publish the project
+        run: dotnet publish --configuration Release --output ./out
+
+      # Deploy to Octopus (replace with your Octopus Deploy action)
+      - name: Deploy to Octopus
+        uses: octopusdeploy/octopus-action@v3
+        with:
+          octopus_url: ${{ secrets.OCTOPUS_URL }} # Octopus server URL
+          octopus_api_key: ${{ secrets.OCTOPUS_API_KEY }} # Your Octopus API key
+          project_name: 'driver-hos-state-api' # Replace with your actual project name
+          environment_name: 'QA' # Or whatever environment you're deploying to
+          release_version: '1.0.0' # Replace with your release version logic, or a tag
+          deploy: true
