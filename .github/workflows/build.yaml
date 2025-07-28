@@ -1,44 +1,26 @@
-name: .NET Core Build and Deploy
+name: DX Build
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - "**"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  dx-workfow:
+    name: DX Workflow
+    runs-on: [ubuntu-latest]
+
+    permissions:
+      id-token: write
+      contents: write
 
     steps:
-    # Step 1: Checkout the code
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Dotnet Things
+        uses: variant-inc/actions-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
+          ecr_repository: 'usxpress/driver-hos-state-api'
 
-    # Step 2: Set up .NET 8 SDK
-    - name: Set up .NET SDK
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '8.0.x'  # Use .NET 8 SDK
-
-    # Step 3: Restore dependencies
-    - name: Restore dependencies
-      run: dotnet restore
-
-    # Step 4: Build the application
-    - name: Build the application
-      run: dotnet build --configuration Release
-
-    # Step 5: Run tests (if you have a test project)
-    - name: Run tests
-      run: dotnet test --configuration Release
-
-    # Step 6: Publish the application
-    - name: Publish the application
-      run: dotnet publish --configuration Release --output ./publish
-
-    # Step 7: (Optional) Deploy to production or staging
-    # Example of deploying to Azure App Service or Docker container
-    # You can add deployment steps here based on your infrastructure.
+        # This step sets up the project in Octopus Deploy
+      - name: Octopus Action
+        uses: variant-inc/actions-octopus@v3
