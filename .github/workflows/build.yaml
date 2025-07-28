@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main      # Trigger this action on 'main' branch push
+  pull_request:
+    branches:
+      - main      # Trigger this action on pull request targeting 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0'  # Set the .NET version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Run Tests (optional)
+        run: dotnet test
+
+      - name: Publish
+        run: dotnet publish --configuration Release --output ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to your environment (e.g., Octopus, Docker, etc.)
+        run: |
+          # Add your deployment steps here
+          # For example, if using Octopus:
+          # curl -X POST https://your-octopus-url/api/deployments -H "API-KEY: ${{ secrets.OCTOPUS_API_KEY }}"
+          echo "Deploying application..."
