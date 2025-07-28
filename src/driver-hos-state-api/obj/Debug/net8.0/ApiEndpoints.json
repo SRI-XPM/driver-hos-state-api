@@ -26,6 +26,11 @@
         "Name": "endDate",
         "Type": "System.DateTime",
         "IsRequired": true
+      },
+      {
+        "Name": "state",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

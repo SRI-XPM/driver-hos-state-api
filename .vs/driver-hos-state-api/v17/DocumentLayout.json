@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{0D9FA4DB-6381-40D8-9FF4-0D3D01799565}|src\\driver-hos-state-api\\driver-hos-state-api.csproj|solutionrelative:src\\driver-hos-state-api\\services\\driverhosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0D9FA4DB-6381-40D8-9FF4-0D3D01799565}|src\\driver-hos-state-api\\driver-hos-state-api.csproj|c:\\users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\services\\idriverhosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D9FA4DB-6381-40D8-9FF4-0D3D01799565}|src\\driver-hos-state-api\\driver-hos-state-api.csproj|solutionrelative:src\\driver-hos-state-api\\services\\idriverhosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0D9FA4DB-6381-40D8-9FF4-0D3D01799565}|src\\driver-hos-state-api\\driver-hos-state-api.csproj|c:\\users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0D9FA4DB-6381-40D8-9FF4-0D3D01799565}|src\\driver-hos-state-api\\driver-hos-state-api.csproj|solutionrelative:src\\driver-hos-state-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,8 +45,25 @@
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "IDriverHosService.cs",
+              "DocumentMoniker": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\Services\\IDriverHosService.cs",
+              "RelativeDocumentMoniker": "src\\driver-hos-state-api\\Services\\IDriverHosService.cs",
+              "ToolTip": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\Services\\IDriverHosService.cs",
+              "RelativeToolTip": "src\\driver-hos-state-api\\Services\\IDriverHosService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T16:31:40.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\appsettings.json",
               "RelativeDocumentMoniker": "src\\driver-hos-state-api\\appsettings.json",
@@ -54,15 +75,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\Program.cs",
               "RelativeDocumentMoniker": "src\\driver-hos-state-api\\Program.cs",
               "ToolTip": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\Program.cs",
               "RelativeToolTip": "src\\driver-hos-state-api\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADUAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAACcAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T09:46:25.157Z"
+              "WhenOpened": "2025-07-20T09:46:25.157Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -72,14 +94,14 @@
               "RelativeDocumentMoniker": "src\\driver-hos-state-api\\Services\\DriverHosService.cs",
               "ToolTip": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\Services\\DriverHosService.cs",
               "RelativeToolTip": "src\\driver-hos-state-api\\Services\\DriverHosService.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAAADoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-20T09:45:20.396Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\supputholl\\source\\repos\\driver-hos-state-api\\src\\driver-hos-state-api\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "src\\driver-hos-state-api\\Properties\\launchSettings.json",

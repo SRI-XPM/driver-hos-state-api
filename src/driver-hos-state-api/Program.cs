@@ -36,6 +36,7 @@ app.MapGet("/api/drivers/{driverCompany}/{driverNumber}",
         [FromRoute] string driverNumber,
         [FromQuery] DateTime startDate,
         [FromQuery] DateTime endDate,
+        [FromQuery] string state,
         IDriverHosService hosService) =>
     {
         if (string.IsNullOrWhiteSpace(driverCompany) || string.IsNullOrWhiteSpace(driverNumber))
@@ -43,7 +44,7 @@ app.MapGet("/api/drivers/{driverCompany}/{driverNumber}",
             return TypedResults.BadRequest("Invalid driver company or number.");
         }
 
-        var result = await hosService.GetDriverHosStateDataAsync(driverCompany, driverNumber, startDate, endDate);
+        var result = await hosService.GetDriverHosStateDataAsync(driverCompany, driverNumber, startDate, endDate,state);
 
         if (result is null || result.Records.Count == 0)
         {

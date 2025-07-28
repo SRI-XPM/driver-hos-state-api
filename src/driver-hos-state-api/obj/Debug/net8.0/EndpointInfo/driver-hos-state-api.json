@@ -44,6 +44,14 @@
               "type": "string",
               "format": "date-time"
             }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

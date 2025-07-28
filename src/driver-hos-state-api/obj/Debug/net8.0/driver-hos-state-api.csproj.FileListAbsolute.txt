@@ -1,7 +1,7 @@
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\appsettings.json
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\driver-hos-state-api.staticwebassets.endpoints.json
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\driver-hos-state-api.exe
+C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\appsettings.json
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\driver-hos-state-api.deps.json
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\driver-hos-state-api.runtimeconfig.json
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\driver-hos-state-api.dll
@@ -24,7 +24,11 @@ C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\b
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\System.ClientModel.dll
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\System.Diagnostics.EventLog.dll
@@ -57,6 +61,7 @@ C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\o
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.AssemblyInfoInputs.cache
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.AssemblyInfo.cs
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.csproj.CoreCompileInputs.cache
+C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.sourcelink.json
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\scopedcss\bundle\driver-hos-state-api.styles.css
@@ -71,8 +76,3 @@ C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\o
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.pdb
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.genruntimeconfig.cache
 C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\ref\driver-hos-state-api.dll
-C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Microsoft.OpenApi.dll
-C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\supputholl\source\repos\driver-hos-state-api\src\driver-hos-state-api\obj\Debug\net8.0\driver-hos-state-api.MvcApplicationPartsAssemblyInfo.cs

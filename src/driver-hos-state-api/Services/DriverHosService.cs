@@ -14,7 +14,7 @@ namespace driver_hos_state_api.Services
             _configuration = configuration;
         }
 
-        public async Task<DriverHosStateResponse> GetDriverHosStateDataAsync(string driverCompany, string driverNumber, DateTime startDate, DateTime endDate)
+        public async Task<DriverHosStateResponse> GetDriverHosStateDataAsync(string driverCompany, string driverNumber, DateTime startDate, DateTime endDate, string state)
         {
             var response = new DriverHosStateResponse
             {
@@ -39,11 +39,13 @@ namespace driver_hos_state_api.Services
                     DriverCompany = driverCompany,
                     DriverNumber = driverNumber,
                     StartDate = startDate,
-                    EndDate = endDate
+                    EndDate = endDate,
+                    State = state
                 });
 
             response.Records = results.ToList();
             return response;
         }
+
     }
 }
