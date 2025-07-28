@@ -18,7 +18,7 @@ infrastructure:
       prod: USXSQLOPSRPT
     database: MobileComm
 
-handler:
+api:
   enabled: true
   autoscaling:
     enabled: true
@@ -39,3 +39,14 @@ handler:
   configVars:
     ConnectionStrings__MobileComm: "Server=#{SqlServer};Database=MobileComm;User Id=#{SqlUser};Password=#{SqlPassword};TrustServerCertificate=True"
     Serilog__MinimumLevel__Default: Information
+
+  istio:
+    egress:
+      # SQL SERVER
+      - name: sql
+        hosts:
+          - "*.usxpress.com"
+        ports:
+          - number: 1433
+            protocol: TCP
+        resolution: NONE
