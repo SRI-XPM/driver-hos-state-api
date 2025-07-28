@@ -1,51 +1,44 @@
-name: DX Build and Deploy
+name: .NET Core Build and Deploy
 
 on:
   push:
     branches:
-      - main  # Trigger build when pushing to the 'main' branch
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu image for the build
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2  # Checkout the code from the repository
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      # Set up .NET environment
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '8.0.x'  # Ensure the correct version of .NET is used
+    # Step 2: Set up .NET SDK
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0' # Set the version of .NET you are using, e.g., '6.0', '7.0'
 
-      # Install dependencies
-      - name: Install Dependencies
-        run: dotnet restore  # Restore NuGet packages
+    # Step 3: Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
 
-      # Check the project SDK version
-      - name: Check .NET SDK Version
-        run: dotnet --version  # Output the current .NET version being used
+    # Step 4: Build the application
+    - name: Build the application
+      run: dotnet build --configuration Release
 
-      # Build the project
-      - name: Build the project
-        run: dotnet build --configuration Release  # Build the project in Release mode
+    # Step 5: Run tests (if you have a test project)
+    - name: Run tests
+      run: dotnet test --configuration Release
 
-      # Run tests (optional)
-      - name: Run tests
-        run: dotnet test --configuration Release  # Run unit tests in Release mode
+    # Step 6: Publish the application (optional for deployment)
+    - name: Publish the application
+      run: dotnet publish --configuration Release --output ./publish
 
-      # Publish the project
-      - name: Publish the project
-        run: dotnet publish --configuration Release --output ./out  # Publish to the './out' folder
-
-      # Deploy to Octopus (replace with your Octopus Deploy action)
-      - name: Deploy to Octopus
-        uses: octopusdeploy/octopus-action@v3
-        with:
-          octopus_url: ${{ secrets.OCTOPUS_URL }}  # Octopus server URL from GitHub secrets
-          octopus_api_key: ${{ secrets.OCTOPUS_API_KEY }}  # Octopus API key from GitHub secrets
-          project_name: 'driver-hos-state-api'  # Project name in Octopus
-          environment_name: 'QA'  # Specify the environment (e.g., QA, PROD)
-          release_version: '1.0.0'  # Replace with your release version logic or use a tag
-          deploy: true  # Flag to trigger deployment
+    # Step 7: (Optional) Deploy to production or staging
+    # Example of deploying to Azure App Service or Docker container
+    # You can add deployment steps here based on your infrastructure.
