@@ -1,0 +1,41 @@
+name: driver-hos-state-api
+
+octopus:
+  space: USXpress
+  group: enterprise
+
+tags:
+  owner: USXpress
+  team: DXT
+  purpose: Driver HOS by State API
+
+infrastructure:
+  sqlserver:
+    user: '#{SqlUser}'             # Set in Octopus
+    password: '#{SqlPassword}'     # Set in Octopus
+    server:
+      qa: USXSQLOPSQA
+      prod: USXSQLOPSRPT
+    database: MobileComm
+
+handler:
+  enabled: true
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+
+  service:
+    targetPort: 8080
+
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: 8080
+    initialDelaySeconds: 10
+    periodSeconds: 30
+    failureThreshold: 3
+
+  configVars:
+    ConnectionStrings__MobileComm: "Server=#{SqlServer};Database=MobileComm;User Id=#{SqlUser};Password=#{SqlPassword};TrustServerCertificate=True"
+    Serilog__MinimumLevel__Default: Information
