@@ -1,48 +1,26 @@
-name: CI/CD Pipeline
+name: DX Build
 
 on:
   push:
     branches:
-      - main      # Trigger this action on 'main' branch push
-  pull_request:
-    branches:
-      - main      # Trigger this action on pull request targeting 'main'
+      - "**"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  dx-workfow:
+    name: DX Workflow
+    runs-on: [ubuntu-latest]
+
+    permissions:
+      id-token: write
+      contents: write
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v2
+      - name: Dotnet Things
+        uses: variant-inc/actions-dotnet@v2
         with:
-          dotnet-version: '8.0'  # Set the .NET version
+          dotnet-version: '8.0.x'
+          ecr_repository: 'usxpress/ops-maintenance-api'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --configuration Release
-
-      - name: Run Tests (optional)
-        run: dotnet test
-
-      - name: Publish
-        run: dotnet publish --configuration Release --output ./out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
-
-      - name: Deploy to your environment (e.g., Octopus, Docker, etc.)
-        run: |
-          # Add your deployment steps here
-          # For example, if using Octopus:
-          # curl -X POST https://your-octopus-url/api/deployments -H "API-KEY: ${{ secrets.OCTOPUS_API_KEY }}"
-          echo "Deploying application..."
+        # This step sets up the project in Octopus Deploy
+      - name: Octopus Action
+        uses: variant-inc/actions-octopus@v3
