@@ -10,7 +10,7 @@ env:
 on:
   push:
     branches:
-      - "**"  # Will trigger on any branch push, adjust to limit to certain branches if needed.
+      - "**"
 
 jobs:
   build:
@@ -18,38 +18,36 @@ jobs:
     runs-on: [ubuntu-latest]
 
     permissions:
-      id-token: write   # Required for OIDC
-      contents: write   # Required to push changes to the repository (if needed)
+      id-token: write  # For OIDC if applicable
+      contents: write  # For pushing changes
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Setup .NET SDK
+      - name: Set up .NET SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '8.0.x'
 
-      - name: Build .NET Project
-        run: |
-          dotnet build --configuration Release
-          dotnet publish --configuration Release --output ./out
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Artifact 📦
+        uses: variant-inc/actions-dotnet@v2
+        with:
+          dotnet-version: 8.0.x
+          ecr_repository: usxpress/driver-hos-state-api
 
       - name: Login to Amazon ECR
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
 
-      - name: Build Docker Image
-        run: |
-          docker build -t <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/usxpress/driver-hos-state-api:latest .
-        
-      - name: Push Docker Image to ECR
-        run: |
-          docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/usxpress/driver-hos-state-api:latest
-
-      - name: Deploy to Octopus
+      - name: Release 🛸
         uses: variant-inc/actions-octopus@v3
         with:
-          octopus_api_key: ${{ secrets.OCTOPUS_API_KEY }}  # Set in GitHub secrets
-          octopus_server: https://octopus.example.com  # Your Octopus server URL
           deploy_yaml_dir: .octopus/deploy
