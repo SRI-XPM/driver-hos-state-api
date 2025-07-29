@@ -1,13 +1,18 @@
-name: DX Build
+---
+name: octo-push-dx
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  MASTER_BRANCH: master
 on:
   push:
     branches:
       - "**"
-
 jobs:
-  dx-workfow:
-    name: DX Workflow
+  build:
+    name: Build Image and Push to Octo
     runs-on: [ubuntu-latest]
 
     permissions:
@@ -15,12 +20,14 @@ jobs:
       contents: write
 
     steps:
-      - name: Dotnet Things
+      - name: Artifact 📦
         uses: variant-inc/actions-dotnet@v2
         with:
-          dotnet-version: '8.0.x'
-          ecr_repository: 'usxpress/driver-hos-state-api'
+          dotnet-version: 8.0.x
+          ecr_repository: usxpress/driver-hos-state-api
 
         # This step sets up the project in Octopus Deploy
-      - name: Octopus Action
+      - name: Release 🛸
         uses: variant-inc/actions-octopus@v3
+        with:
+          deploy_yaml_dir: .octopus/deploy
