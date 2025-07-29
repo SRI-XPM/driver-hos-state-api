@@ -5,17 +5,12 @@ octopus:
 tags:
   owner: US Xpress
   team: Luchadores
-  purpose: "Exposes REST services for dealing with Driver Insights"
+  purpose: "driver hos data"
 api: 
   service:
     targetPort: 5000
   configVars:
-    ASPNETCORE_URLS: "http://0.0.0.0:5000"
-    AWS_REGION: "#{AWS_REGION}"
-    API_BASE_PATH: "#{API_BASE_PATH}"
-    Sql__psa: "#{SQL_PSA_CONNECTION_STRING}"
-    DriverRepository__ConnectionString: "#{MONGO}"
-    AttritionApi__Url: "#{AttritionApi__Url}"
+    
   otel:
     logging:
       enabled: false
