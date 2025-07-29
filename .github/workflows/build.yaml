@@ -10,50 +10,46 @@ env:
 on:
   push:
     branches:
-      - "**"  # Trigger the action on any push to any branch
+      - "**"  # Will trigger on any branch push, adjust to limit to certain branches if needed.
 
 jobs:
   build:
     name: Build Image and Push to Octo
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest]
 
     permissions:
-      id-token: write         # Allow OIDC authentication to assume the IAM role
-      contents: write         # Allow GitHub to push content to the repo
+      id-token: write   # Required for OIDC
+      contents: write   # Required to push changes to the repository (if needed)
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2  # Checkout the code from GitHub
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-      - name: Set up .NET SDK
-        uses: variant-inc/actions-dotnet@v2
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 8.0.x  # Set up .NET SDK 8.0
+          dotnet-version: '8.x'
 
-      - name: Build and Publish .NET Application
+      - name: Build .NET Project
         run: |
-          dotnet restore
           dotnet build --configuration Release
           dotnet publish --configuration Release --output ./out
 
-      - name: Log in to Amazon ECR
+      - name: Login to Amazon ECR
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Build Docker Image
         run: |
-          docker build -t usxpress/driver-hos-state-api:latest .
-
-      - name: Tag Docker Image
-        run: |
-          docker tag usxpress/driver-hos-state-api:latest <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/usxpress/driver-hos-state-api:latest
-
+          docker build -t <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/usxpress/driver-hos-state-api:latest .
+        
       - name: Push Docker Image to ECR
         run: |
           docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/usxpress/driver-hos-state-api:latest
 
-      # This step sets up the project in Octopus Deploy
-      - name: Release 🛸
+      - name: Deploy to Octopus
         uses: variant-inc/actions-octopus@v3
         with:
-          deploy_yaml_dir: .octopus/deploy   # Specify the path to the Octopus deploy YAML file
+          octopus_api_key: ${{ secrets.OCTOPUS_API_KEY }}  # Set in GitHub secrets
+          octopus_server: https://octopus.example.com  # Your Octopus server URL
+          deploy_yaml_dir: .octopus/deploy

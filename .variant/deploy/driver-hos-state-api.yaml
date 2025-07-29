@@ -1,8 +1,8 @@
 name: driver-hos-state-api
 
 octopus:
-  space: USXpress              # Your Octopus space name
-  group: enterprise            # Your Octopus deployment group
+  space: USXpress  # Ensure the space is correctly set in Octopus Deploy
+  group: enterprise  # Make sure the deployment group is correct
 
 tags:
   owner: USXpress
@@ -11,8 +11,8 @@ tags:
 
 infrastructure:
   sqlserver:
-    user: '#{SqlUser}'         # Set in Octopus
-    password: '#{SqlPassword}' # Set in Octopus
+    user: '#{SqlUser}'  # Variables set in Octopus
+    password: '#{SqlPassword}'
     server:
       qa: USXSQLOPSQA
       prod: USXSQLOPSRPT
@@ -42,6 +42,7 @@ api:
 
   istio:
     egress:
+      # SQL SERVER
       - name: sql
         hosts:
           - "*.usxpress.com"
