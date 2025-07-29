@@ -1,52 +1,80 @@
-name: driver-hos-state-api
-
+name: driver-insights-api
 octopus:
-  space: USXpress  # Ensure the space is correctly set in Octopus Deploy
-  group: enterprise  # Make sure the deployment group is correct
-
+  space: USXpress
+  group: driver
 tags:
-  owner: USXpress
-  team: DXT
-  purpose: Driver HOS by State API
-
-infrastructure:
-  sqlserver:
-    user: '#{SqlUser}'  # Variables set in Octopus
-    password: '#{SqlPassword}'
-    server:
-      qa: USXSQLOPSQA
-      prod: USXSQLOPSRPT
-    database: MobileComm
-
-api:
-  enabled: true
-  autoscaling:
-    enabled: true
-    minReplicas: 2
-    maxReplicas: 10
-
+  owner: US Xpress
+  team: Luchadores
+  purpose: "Exposes REST services for dealing with Driver Insights"
+api: 
   service:
-    targetPort: 8080
-
-  readinessProbe:
-    httpGet:
-      path: /health
-      port: 8080
-    initialDelaySeconds: 10
-    periodSeconds: 30
-    failureThreshold: 3
-
+    targetPort: 5000
   configVars:
-    ConnectionStrings__MobileComm: "Server=#{SqlServer};Database=MobileComm;User Id=#{SqlUser};Password=#{SqlPassword};TrustServerCertificate=True"
-    Serilog__MinimumLevel__Default: Information
-
+    ASPNETCORE_URLS: "http://0.0.0.0:5000"
+    AWS_REGION: "#{AWS_REGION}"
+    API_BASE_PATH: "#{API_BASE_PATH}"
+    Sql__psa: "#{SQL_PSA_CONNECTION_STRING}"
+    DriverRepository__ConnectionString: "#{MONGO}"
+    AttritionApi__Url: "#{AttritionApi__Url}"
+  otel:
+    logging:
+      enabled: false
+  global:
+    upstream:
+      perTryTimeout: 60s
+  routes:
+    subdomains:
+      - type: api
+        product: driver
+        app: insights
+  deployment:
+     podAnnotations:        
+        instrumentation.opentelemetry.io/inject-dotnet: "otel/otel-instrumentation"
   istio:
+    ingress:
+      disableRewrite: true
     egress:
-      # SQL SERVER
-      - name: sql
+    
+    # XPM
+      - name: wildcard
         hosts:
-          - "*.usxpress.com"
+          - '*.usxpress.com'
+        ports: 
+          - number: 443
+            protocol: HTTPS
+        resolution: NONE      
+      
+      - name: xpm
+        hosts: 
+          - '*.usxpress.com'
+        ports:
+          - number: 80
+            protocol: HTTP
+        resolution: NONE
+      
+      - name: seq-logging
+        hosts:
+          - 'usxseqlog.usxpress.com'
+        ports:
+          - number: 9997
+            protocol: HTTP
+        resolution: DNS
+
+        #SQL SERVER
+      - name: sql-psa-dev
+        hosts:
+          - 'USXSQLPSAQA.usxpress.com'
         ports:
           - number: 1433
             protocol: TCP
-        resolution: NONE
+        
+      - name: sql-psa-prod
+        hosts:
+          - 'USXSQLPSAPRD.usxpress.com'
+        ports:
+          - number: 1433
+            protocol: TCP
+      
+
+
+
