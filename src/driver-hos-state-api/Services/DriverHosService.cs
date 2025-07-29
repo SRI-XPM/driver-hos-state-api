@@ -32,7 +32,7 @@ namespace driver_hos_state_api.Services
 
             // TODO: Replace with actual stored procedure name and parameter names
             var results = await connection.QueryAsync<DriverHosRecord>(
-                sql: "TBD_StoredProcedureName",
+                sql: "MobileComm.DriverSickTime.DriverHoursWorkedByState",
                 commandType: CommandType.StoredProcedure,
                 param: new
                 {
