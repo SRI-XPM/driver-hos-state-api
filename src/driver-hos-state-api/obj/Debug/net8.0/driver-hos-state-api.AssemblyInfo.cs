@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("driver-hos-state-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9bb21809da43d73f212693af47ea49cdce37f4a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+224afa0055c49acd802cc9882c941f7b2d3759db")]
 [assembly: System.Reflection.AssemblyProductAttribute("driver-hos-state-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("driver-hos-state-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

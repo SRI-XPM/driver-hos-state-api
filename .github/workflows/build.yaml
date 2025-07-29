@@ -1,0 +1,26 @@
+name: octo-push-dx
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  dx-workfow:
+    name: DX Workflow
+    runs-on: [ubuntu-latest]
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - name: Dotnet Things
+        uses: variant-inc/actions-dotnet@v2
+        with:
+          ecr_repository: usxpress/driver-insights-api
+          src_file_dir_path: "."
+          dotnet-version: 8.0.x
+          
+      - name: Octopus Action
+        uses: variant-inc/actions-octopus@v3
